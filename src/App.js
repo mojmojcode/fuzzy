@@ -49,22 +49,6 @@ function App() {
       { role: "gpt", content: `${data.message}` },
     ]);
     console.log(data.message);
-
-    // const response = await fetch("http://localhost:3001/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     message: chatLog.map((msg) => msg.content).join(" "),
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setResponse(data.message);
-    //     //console.log(data);
-    //   })
-    //   .catch((err) => console.log(err));
   }
 
   const handleInputChange = (e) => {
@@ -133,39 +117,6 @@ function App() {
     </div>
   );
 }
-
-// function ChatBox({ chatLog }) {
-//   const chatLogRef = useRef(null);
-
-//   useEffect(() => {
-//     const observer = new MutationObserver((mutations) => {
-//       mutations.forEach((mutation) => {
-//         if (mutation.type === "childList") {
-//           const { current } = chatLogRef;
-//           if (current) {
-//             current.scrollTop = current.scrollHeight;
-//           }
-//         }
-//       });
-//     });
-
-//     if (chatLogRef.current) {
-//       observer.observe(chatLogRef.current, {
-//         childList: true,
-//       });
-//     }
-
-//     return () => observer.disconnect();
-//   }, []); // Empty dependency array ensures this runs once on mount
-
-//   return (
-//     <div className="chat-log" ref={chatLogRef}>
-//       {chatLog.map((content, index) => (
-//         <ChatMessage key={index} message={content} />
-//       ))}
-//     </div>
-//   );
-// }
 
 const ChatMessage = ({ message }) => {
   return (
