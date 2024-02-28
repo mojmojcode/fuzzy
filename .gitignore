@@ -153,4 +153,12 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 >>>>>>> 7751a97 (Initialize project using Create React App)
+=======
+
+.env
+.env.local
+.env.production
+node_modules/
+>>>>>>> 2013176 (initial commit)

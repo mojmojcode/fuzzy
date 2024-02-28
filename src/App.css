@@ -1,5 +1,136 @@
 .App {
   text-align: center;
+  display: flex;
+  background-color: #282c34;
+  color: white;
+  position: relative;
+  top: 0;bottom: 0;left: 0;right: 0;
+  display: flex;
+  flex-direction: row; /* Stack children vertically */
+  height: 100vh; /* Full viewport height */
+  align-items: stretch;
+}
+
+.sidemenu {
+  width: 260px;
+  padding: 10px;
+  background-color: #171717;
+}
+
+.sidemenu-button{
+  padding: 12px;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-align: left;
+  transition: ease 0.25s all;
+}
+
+.sidemenu-button:hover{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidemenu-button span{
+  padding-left:6px; padding-right: 10px;
+}
+
+.chat-log{
+  text-align: left;
+  /*max-height: 500px; /* Adjust based on your layout */
+  overflow-y: auto; /* Enables vertical scrolling */
+  flex: 1; /* Grow to fill available space */
+  overflow-y: auto; /* Keep the scrollbar for overflow */
+  
+}
+
+.chat-message-center{
+  display:flex;
+  max-width: 740px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px;
+  padding-left: 40px;
+  padding-right: 40px;
+  
+}
+.chat-message.chatgpt{
+  background-color: #444654;
+}
+.chat-message{
+  
+  }
+
+.avatar.chatgpt{
+  background-color: #0da37f;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.avatar{
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.message{ 
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.chat-input-text-area{
+  background-color: #40414f;
+  width: 95%;
+  padding: 12px;
+  color: white;
+  font-size: 1.25em;
+
+  border-radius: 5px; 
+  border: none;
+  margin: 12px;
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  overflow-y: auto; /* Allows the textarea to grow vertically */
+  min-height: 25px; /* Minimum height before user starts typing */
+  max-height: 1000px; /* Maximum height before scrolling within textarea */
+  resize: none; /* Prevents user from manually resizing the textarea */
+}
+
+.chat-input-holder{
+  position: relative;
+  padding: 24px;
+  bottom: 0;
+  left: 0; right: 0;
+
+}
+
+.chatbox {
+  flex: 1;
+  border: 1px solid #d3d3d3;
+  background-color: #212121;
+  position: relative;
+  flex: 1; /* This allows the chatbox to grow and fill available space */
+  display: flex;
+  flex-direction: column; /* Ensure internal layout is vertically oriented */ 
+  height: 100%; /* Fill available vertical space */
+}
+
+.forecast-parameters {
+  padding: 10px;
+  background-color: #232834;
+  border: 1px solid #d3d3d3;
+  
+}
+
+/* get the sizing of the columns right */
+.chatbox, .forecast-parameters {
+  flex: 1;
+
+
+  border: 1px solid #d3d3d3;
+  
 }
 
 .App-logo {

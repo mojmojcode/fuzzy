@@ -1,0 +1,18 @@
+
+@imstreaming7222
+7 months ago
+Great video, I have learned so much from the tutorial. I have a question on the 23:18 mark, you launch the frontend to port 3000 even though you changed it to port 3001. As I followed, When I launched node index.js, I got stuck with a CANNOT GET / error. Do you know any solutions?
+
+1
+
+
+Reply
+
+
+1 reply
+@meesh9229
+@meesh9229
+6 months ago (edited)
+I had the same error and here is the problem/solution I found: 
+PROBLEM: By default, when you access a server URL in your browser it sends a 'GET' request to the server, and we have only defined a 'POST' request. He is not having a problem with this because the React app is running, so he is't directly accessing the server URL in his browser, therefore not sending a 'GET' request. The problem is your React app is not running.
+SOLUTION: 'npm start' to start your React app, return to the URL and it should work.
