@@ -6,7 +6,7 @@ import "./normalize.css";
 
 function App() {
   const [input, setInput] = useState("");
-  // const [response, setResponse] = useState("");
+  const [response] = useState("");
   const [chatLog, setChatLog] = useState([
     {
       role: "gpt",
