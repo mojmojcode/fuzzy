@@ -1,12 +1,12 @@
 // Create a react component that inputs a text area message then performs a fetch request to localhost:3001, gets back a response as a data.message and displays that message in a box below
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./normalize.css";
 
 function App() {
   const [input, setInput] = useState("");
-  const [response, setResponse] = useState("");
+  // const [response, setResponse] = useState("");
   const [chatLog, setChatLog] = useState([
     {
       role: "gpt",
@@ -133,38 +133,38 @@ function App() {
   );
 }
 
-function ChatBox({ chatLog }) {
-  const chatLogRef = useRef(null);
+// function ChatBox({ chatLog }) {
+//   const chatLogRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === "childList") {
-          const { current } = chatLogRef;
-          if (current) {
-            current.scrollTop = current.scrollHeight;
-          }
-        }
-      });
-    });
+//   useEffect(() => {
+//     const observer = new MutationObserver((mutations) => {
+//       mutations.forEach((mutation) => {
+//         if (mutation.type === "childList") {
+//           const { current } = chatLogRef;
+//           if (current) {
+//             current.scrollTop = current.scrollHeight;
+//           }
+//         }
+//       });
+//     });
 
-    if (chatLogRef.current) {
-      observer.observe(chatLogRef.current, {
-        childList: true,
-      });
-    }
+//     if (chatLogRef.current) {
+//       observer.observe(chatLogRef.current, {
+//         childList: true,
+//       });
+//     }
 
-    return () => observer.disconnect();
-  }, []); // Empty dependency array ensures this runs once on mount
+//     return () => observer.disconnect();
+//   }, []); // Empty dependency array ensures this runs once on mount
 
-  return (
-    <div className="chat-log" ref={chatLogRef}>
-      {chatLog.map((content, index) => (
-        <ChatMessage key={index} message={content} />
-      ))}
-    </div>
-  );
-}
+//   return (
+//     <div className="chat-log" ref={chatLogRef}>
+//       {chatLog.map((content, index) => (
+//         <ChatMessage key={index} message={content} />
+//       ))}
+//     </div>
+//   );
+// }
 
 const ChatMessage = ({ message }) => {
   return (
