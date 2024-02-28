@@ -33,7 +33,7 @@ function App() {
     setInput("");
 
     // fetch response to the api combining the chat log array of messages and sending it as a message to localhost:3001 as a post
-    const response = await fetch(`${process.env.REACT_APP_OPENAI_API_URL}/`, {
+    const response = await fetch(`${process.env.REACT_APP_OPENAI_API_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
