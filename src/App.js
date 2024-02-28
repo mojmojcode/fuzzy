@@ -10,9 +10,10 @@ function App() {
   const [chatLog, setChatLog] = useState([
     {
       role: "gpt",
-      content: "What disease?",
+      content:
+        "Tell me everything about the forecast you want to create. Or I can guide you through the process step by step.",
     },
-    { role: "me", content: "I want to forecast revenue for a new drug" },
+    // { role: "me", content: "I want to forecast revenue for a new drug" },
   ]); // [ {role: "user", content: "Hello World"}, {role: "assistant", content: "I am an AI"}
 
   const chatLogEndRef = useRef(null); // Ref for scrolling to the bottom
