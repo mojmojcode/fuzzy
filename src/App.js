@@ -30,27 +30,34 @@ function App() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setChatLog((chatLog) => [...chatLog, { role: "me", content: input }]);
+    const newUserMessage = { role: "me", content: input };
+    setChatLog((currentChatLog) => [...currentChatLog, newUserMessage]);
     setInput("");
 
     // fetch response to the api combining the chat log array of messages and sending it as a message to localhost:3001 as a post
-    const response = await fetch(`${process.env.REACT_APP_OPENAI_API_URL}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message: chatLog.map((msg) => msg.content).join(" "),
-      }),
-    });
-    const data = await response.json();
-    setChatLog((chatLog) => [
-      ...chatLog,
-      { role: "gpt", content: `${data.message}` },
-    ]);
-    console.log(data.message);
-  }
 
+    try {
+      const response = await fetch(`${process.env.REACT_APP_OPENAI_API_URL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: [...chatLog, newUserMessage]
+            .map((msg) => msg.content)
+            .join(" "),
+        }),
+      });
+
+      const data = await response.json();
+      setChatLog((currentChatLog) => [
+        ...currentChatLog,
+        { role: "gpt", content: data.message },
+      ]);
+    } catch (error) {
+      console.error("Failed to fetch response from OpenAI:", error);
+    }
+  }
   const handleInputChange = (e) => {
     // Your input change logic here
     const textarea = textareaRef.current;
