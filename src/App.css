@@ -237,6 +237,8 @@
     background-color: #333; /* Example color */
     transition: transform 0.3s ease-out;
     z-index: 1000; /* Ensure it's above other content */
+    padding-right: 50px;
+    padding-left: 20px;
 }
 
   .sidemenu:not(.sidemenu-hidden) {
@@ -254,13 +256,17 @@
   .sidemenu-toggle {
     display: block; /* Show the toggle button */
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 0px;
     z-index: 1001;
     cursor: pointer;
-    background-color: white;
-    border: none;
-    color: black; /* Adjust based on your preference */
+    background-image: url('./icons/menu-bar.png'); /* Adjust the path accordingly */
+    background-size: cover; /* or contain, based on how you want the icon to fit */
+    width: 50px; /* Adjust based on your icon's size */
+    height: 50px; /* Adjust based on your icon's size */
+    background-color: transparent; /* If you don't want any background color */
+    border: none; /* Remove border if not needed */
+    transition: 0.3s ease; /* Smooth transition */
   }
 
   .chatbox {
@@ -275,6 +281,15 @@
   .sidemenu-open ~ .main-content, .sidemenu-open ~ .chatbox, .sidemenu-open ~ .forecast-parameters {
     opacity: 0.5; /* Dim the content when menu is open */
 }
+  /* Adjust the position of the toggle button when it is pressed to stay on the side of the sidebar*/
+
+  .sidemenu-toggle-open {
+    left: calc(67%); /* Adjust based on sidebar width */
+    background-image: url('./icons/close-menu-icon.png'); /* Adjust the path accordingly */
+    width: 25px;
+    height: 25px;
+    top: 35px;
+  }
   .chatbox-active .chatbox,
   .forecast-parameters-active .forecast-parameters {
     display: block; /* Only show the active section */

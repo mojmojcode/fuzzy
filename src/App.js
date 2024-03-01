@@ -82,9 +82,12 @@ function App() {
 
   return (
     <div className={`App`}>
-      <button className="sidemenu-toggle" onClick={toggleSideMenu}>
-        {isSideMenuOpen ? "Close" : "Menu"}
-      </button>
+      <button
+        className={`sidemenu-toggle ${
+          isSideMenuOpen ? "sidemenu-toggle-open" : ""
+        }`}
+        onClick={toggleSideMenu}
+      ></button>
 
       <aside className={`sidemenu ${isSideMenuOpen ? "" : "sidemenu-hidden"}`}>
         <h1>Forecast Structure</h1>
