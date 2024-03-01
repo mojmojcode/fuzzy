@@ -68,59 +68,106 @@ function App() {
     }
   };
 
+  // handles the mobile layout of the app
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [isForecastVisible, setIsForecastVisible] = useState(false);
+  const [activeWindow, setActiveWindow] = useState("chat");
+
+  const toggleSideMenu = () => {
+    if (window.innerWidth <= 768) {
+      // Example breakpoint for mobile devices
+      setIsSideMenuOpen(!isSideMenuOpen);
+    }
+  };
+  const toggleActiveWindow = (windowName) => setActiveWindow(windowName);
+
   return (
-    <div className="App">
-      <aside className="sidemenu">
+    <div className={`App`}>
+      <button className="sidemenu-toggle" onClick={toggleSideMenu}>
+        {isSideMenuOpen ? "Close" : "Menu"}
+      </button>
+
+      <aside className={`sidemenu ${isSideMenuOpen ? "" : "sidemenu-hidden"}`}>
         <h1>Forecast Structure</h1>
         <div className="sidemenu-button" onClick={clearChatLog}>
           <span>+</span>Add Forecast Element
         </div>
       </aside>
-      <section className="chatbox">
-        <h1>Chat with Fuzzy</h1>
 
-        <div className="chat-log">
-          {chatLog.map((content, index) => (
-            <ChatMessage key={index} message={content} />
-          ))}
-          <div ref={chatLogEndRef} /> {/* Invisible element for scrolling */}
-        </div>
+      <main className="main-content">
+        <div className="mobile-controls">
+          <button
+            className={`toggle-button ${
+              activeWindow === "chat" ? "active" : ""
+            }`}
+            onClick={() => toggleActiveWindow("chat")}
+          >
+            Fuzzy Chat
+          </button>
+          <button
+            className={`toggle-button ${
+              activeWindow === "forecast" ? "active" : ""
+            }`}
+            onClick={() => toggleActiveWindow("forecast")}
+          >
+            View Forecast
+          </button>
 
-        <div className="chat-input-holder">
-          <form onSubmit={handleSubmit}>
-            <textarea
-              ref={textareaRef}
-              className="chat-input-text-area"
-              value={input}
-              onChange={handleInputChange} // Use the modified handler here
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  handleSubmit(e);
-                }
-              }}
-              placeholder="Tell me about your forecast model..."
-              style={{ minHeight: "25px", overflow: "hidden" }} // Ensure minHeight is set for initial size
-            ></textarea>
-          </form>
-          {/* </section><button type="submit">Submit</button>} */}
+          {/* <ChatInput /> This is where you include the ChatInput component */}
         </div>
+        <div className="page-content">
+          {activeWindow === "chat" && (
+            <section className="chatbox">
+              <h1>Chat with Fuzzy</h1>
 
-        {response && (
-          <div>
-            <b>Fuzzy:</b> {response}
-          </div>
-        )}
-      </section>
-      <section className="forecast-parameters">
-        <h1>Current Forecast Parameters</h1>
-        <div className="forecast-parameters-box">
-          <h2>Revenue</h2>
-          <p>Forecasting Revenue for a new drug</p>
-          <button type="submit">Generate Model</button>
+              <div className="chat-log">
+                {chatLog.map((content, index) => (
+                  <ChatMessage key={index} message={content} />
+                ))}
+                <div ref={chatLogEndRef} />{" "}
+                {/* Invisible element for scrolling */}
+              </div>
+
+              <div className="chat-input-holder">
+                <form onSubmit={handleSubmit}>
+                  <textarea
+                    ref={textareaRef}
+                    className="chat-input-text-area"
+                    value={input}
+                    onChange={handleInputChange} // Use the modified handler here
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSubmit(e);
+                      }
+                    }}
+                    placeholder="Tell me about your forecast model..."
+                    style={{ minHeight: "25px", overflow: "hidden" }} // Ensure minHeight is set for initial size
+                  ></textarea>
+                </form>
+                {/* </section><button type="submit">Submit</button>} */}
+              </div>
+
+              {response && (
+                <div>
+                  <b>Fuzzy:</b> {response}
+                </div>
+              )}
+            </section>
+          )}
+          {/* Forecast Parameters are only shown when activeWindow is 'forecast' */}
+          {activeWindow === "forecast" && (
+            <section className="forecast-parameters">
+              <h1>Current Forecast Parameters</h1>
+              <div className="forecast-parameters-box">
+                <h2>Revenue</h2>
+                <p>Forecasting Revenue for a new drug</p>
+                <button type="submit">Generate Model</button>
+              </div>
+            </section>
+          )}
         </div>
-      </section>
-      {/* <ChatInput /> This is where you include the ChatInput component */}
+      </main>
     </div>
   );
 }

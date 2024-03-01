@@ -127,10 +127,7 @@
 /* get the sizing of the columns right */
 .chatbox, .forecast-parameters {
   flex: 1;
-
-
   border: 1px solid #d3d3d3;
-  
 }
 
 .App-logo {
@@ -166,4 +163,137 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.mobile-controls{
+  display: none;
+}
+
+.sidemenu-toggle{
+  display: none;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  /* Ensure it's part of the flex layout */
+}
+.page-content
+{
+  display: flex;
+  flex-direction: column; /* Align children vertically */
+  flex-grow: 1; /* Take up all available space */
+  width: 100%; /* Cover full width */
+  position: relative; /* If you are positioning children absolutely */
+}
+/* Mobile specific styles */
+@media (max-width: 768px) {
+  .mobile-toggle-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+  .main-content {
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    flex-grow: 1; /* Take up all available space */
+    width: 100%; /* Cover full width */
+    position: relative; /* If you are positioning children absolutely */
+  }
+  .page-content {
+    flex-grow: 1; /* Take up all available space */
+    width: 100%; /* Cover full width */
+  }
+  .mobile-controls {
+    display: block; /* Show the mobile controls */
+  }
+  .mobile-toggle-buttons button {
+    flex-grow: 1;
+    padding: 10px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  .mobile-toggle-buttons button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  .sidemenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%); /* Start off-screen */
+    width: 75%; /* Adjust based on your preference */
+    height: 100%;
+    background-color: #333; /* Example color */
+    transition: transform 0.3s ease-out;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+  .sidemenu:not(.sidemenu-hidden) {
+    transform: translateX(0); /* Show when toggled */
+  }
+
+  .menu-toggle, .forecast-toggle {
+    position: fixed;
+    z-index: 1010; /* Above the side menu */
+    top: 10px; /* Adjust as needed */
+    left: 10px; /* Adjust as needed */
+    cursor: pointer;
+  }
+
+  .sidemenu-toggle {
+    display: block; /* Show the toggle button */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    color: black; /* Adjust based on your preference */
+  }
+
+  .chatbox {
+    transition: opacity 0.3s ease;
+    height: 100%; /* Fill available vertical space */
+  }
+
+  .forecast-parameters{
+    transition: opacity 0.3s ease;
+  }
+
+  .sidemenu-open ~ .main-content, .sidemenu-open ~ .chatbox, .sidemenu-open ~ .forecast-parameters {
+    opacity: 0.5; /* Dim the content when menu is open */
+}
+  .chatbox-active .chatbox,
+  .forecast-parameters-active .forecast-parameters {
+    display: block; /* Only show the active section */
+  }
+
+  .toggle-button {
+    font-size: 0.8rem; /* Small font size for the buttons */
+    margin: 0 5px; /* Spacing between buttons */
+    padding: 5px 10px; /* Small padding, slightly bigger than one row of text */
+    background-color: #444; /* Example background color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .toggle-button.active {
+    background-color: #666; /* Darker background for active state */
+  }
+  
+  .toggle-button:hover {
+    background-color: #555; /* Hover state */
+  }
+  
 }
