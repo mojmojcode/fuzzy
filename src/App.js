@@ -70,7 +70,6 @@ function App() {
 
   // handles the mobile layout of the app
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
-  const [isForecastVisible, setIsForecastVisible] = useState(false);
   const [activeWindow, setActiveWindow] = useState("chat");
 
   const toggleSideMenu = () => {
@@ -116,56 +115,60 @@ function App() {
           {/* <ChatInput /> This is where you include the ChatInput component */}
         </div>
         <div className="page-content">
-          {activeWindow === "chat" && (
-            <section className="chatbox">
-              <h1>Chat with Fuzzy</h1>
+          <section
+            className={`chatbox ${
+              activeWindow === "forecast" ? "mobile-hidden" : ""
+            }`}
+          >
+            <h1>Chat with Fuzzy</h1>
 
-              <div className="chat-log">
-                {chatLog.map((content, index) => (
-                  <ChatMessage key={index} message={content} />
-                ))}
-                <div ref={chatLogEndRef} />{" "}
-                {/* Invisible element for scrolling */}
-              </div>
+            <div className="chat-log">
+              {chatLog.map((content, index) => (
+                <ChatMessage key={index} message={content} />
+              ))}
+              <div ref={chatLogEndRef} />{" "}
+              {/* Invisible element for scrolling */}
+            </div>
 
-              <div className="chat-input-holder">
-                <form onSubmit={handleSubmit}>
-                  <textarea
-                    ref={textareaRef}
-                    className="chat-input-text-area"
-                    value={input}
-                    onChange={handleInputChange} // Use the modified handler here
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        handleSubmit(e);
-                      }
-                    }}
-                    placeholder="Tell me about your forecast model..."
-                    style={{ minHeight: "25px", overflow: "hidden" }} // Ensure minHeight is set for initial size
-                  ></textarea>
-                </form>
-                {/* </section><button type="submit">Submit</button>} */}
-              </div>
+            <div className="chat-input-holder">
+              <form onSubmit={handleSubmit}>
+                <textarea
+                  ref={textareaRef}
+                  className="chat-input-text-area"
+                  value={input}
+                  onChange={handleInputChange} // Use the modified handler here
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSubmit(e);
+                    }
+                  }}
+                  placeholder="Tell me about your forecast model..."
+                  style={{ minHeight: "25px", overflow: "hidden" }} // Ensure minHeight is set for initial size
+                ></textarea>
+              </form>
+              {/* </section><button type="submit">Submit</button>} */}
+            </div>
 
-              {response && (
-                <div>
-                  <b>Fuzzy:</b> {response}
-                </div>
-              )}
-            </section>
-          )}
-          {/* Forecast Parameters are only shown when activeWindow is 'forecast' */}
-          {activeWindow === "forecast" && (
-            <section className="forecast-parameters">
-              <h1>Current Forecast Parameters</h1>
-              <div className="forecast-parameters-box">
-                <h2>Revenue</h2>
-                <p>Forecasting Revenue for a new drug</p>
-                <button type="submit">Generate Model</button>
+            {response && (
+              <div>
+                <b>Fuzzy:</b> {response}
               </div>
-            </section>
-          )}
+            )}
+          </section>
+
+          <section
+            className={`forecast-parameters ${
+              activeWindow === "chat" ? "mobile-hidden" : ""
+            }`}
+          >
+            <h1>Current Forecast Parameters</h1>
+            <div className="forecast-parameters-box">
+              <h2>Revenue</h2>
+              <p>Forecasting Revenue for a new drug</p>
+              <button type="submit">Generate Model</button>
+            </div>
+          </section>
         </div>
       </main>
     </div>

@@ -183,7 +183,7 @@
 .page-content
 {
   display: flex;
-  flex-direction: column; /* Align children vertically */
+  flex-direction: row; /* Align children vertically */
   flex-grow: 1; /* Take up all available space */
   width: 100%; /* Cover full width */
   position: relative; /* If you are positioning children absolutely */
@@ -205,9 +205,13 @@
   .page-content {
     flex-grow: 1; /* Take up all available space */
     width: 100%; /* Cover full width */
+    flex-direction: column;
   }
   .mobile-controls {
     display: block; /* Show the mobile controls */
+  }
+  .mobile-hidden {
+    display: none;
   }
   .mobile-toggle-buttons button {
     flex-grow: 1;
